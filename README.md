@@ -1,0 +1,2 @@
+This is the repository create by Fu Jie to record the learning process of algorithm.
+
