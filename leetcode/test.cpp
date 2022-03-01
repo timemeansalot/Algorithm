@@ -1,59 +1,93 @@
 #include "headfile.h"
-bool isPalindrome(int x)
+class Solution
 {
-    if (x < 0)
-        return false;
-    else if (x == 0)
+public:
+    vector<int> sortedSquares(vector<int> &nums)
     {
-        return true;
-    }
-
-    int temp = x;
-    int length = 0;
-    while (temp > 0)
-    {
-        length++;
-        temp /= 10;
-    }
-
-    temp = x;
-    stack<int> s;
-
-    for (int i = 0; i < length / 2; i++)
-    {
-        s.push(temp % 10);
-        temp /= 10;
-    }
-    if (length % 2 == 1)
-    {
-        temp /= 10;
-    }
-    while (temp > 0)
-    {
-        if (temp % 10 == s.top())
+        int i = 0;
+        int key=0;
+        int min=0;
+        int length = nums.size();
+        vector<int> res;
+        // is nums has only 1 or 2 items
+        if (length == 1)
         {
-            s.pop();
-            temp /= 10;
+            res.push_back(nums[0] * nums[0]);
+            return res;
         }
-        else
-            return false;
-    }
-    if (s.empty())
-        return true;
+        else if (length == 2)
+        {
+            if (nums[0] * nums[0] < nums[1] * nums[1])
+            {
+                res.push_back(nums[0] * nums[0]);
+                res.push_back(nums[1] * nums[1]);
+            }
+            else
+            {
+                res.push_back(nums[1] * nums[1]);
+                res.push_back(nums[0] * nums[0]);
+            }
+            return res;
+        }
 
-    return 0;
-}
+        // find the minimun point
+        min=nums[i]*nums[i];
+        key=0;
+        min=0x7fffffff;
+        for(i=0;i<length;i++)
+        {
+            if(nums[i]*nums[i]<min)
+            {
+                key=i;
+                min=nums[i]*nums[i];
+            }
+        }
+
+        int j = key - 1, k = key + 1;
+
+        res.push_back(nums[key] * nums[key]);
+        while (j >= 0 && k < length)
+        {
+            if (nums[j] * nums[j] < nums[k] * nums[k])
+            {
+                res.push_back(nums[j] * nums[j]);
+                j--;
+            }
+            else
+            {
+                res.push_back(nums[k] * nums[k]);
+                k++;
+            }
+        }
+        while (j >= 0)
+        {
+            res.push_back(nums[j] * nums[j]);
+            j--;
+        }
+        while (k < length)
+        {
+            res.push_back(nums[k] * nums[k]);
+            k++;
+        }
+
+        return res;
+    }
+};
 int main()
 {
-    int x;
-    while (cin >> x)
+    // vector<int> s = {-1,2,2};
+    // vector<int> s = {-4, -1, 0, 3, 10};
+    vector<int> s = {-10,-5,-5,-4,-3,-3,-3,5,9,10};
+    for (int i = 0; i < s.size(); i++)
     {
-        if (isPalindrome(x) == true)
-        {
-            cout << "true" << endl;
-        }
-        else
-            cout << "false" << endl;
+        cout << s[i] << " ";
+    }
+    cout << endl;
+    Solution sol;
+    vector<int> res = sol.sortedSquares(s);
+    for (int i = 0; i < res.size(); i++)
+    {
+        cout << res[i] << " ";
     }
     return 0;
 }
