@@ -16,7 +16,13 @@ pre_compile: main.cpp speak.cpp
 	g++ -E main.cpp -o main.i
 	g++ -E speak.cpp -o speak.i
 
+static: say.cpp sayhello.cpp
+	g++ -c say.cpp -o say.o
+	g++ -c sayhello.cpp -o sayhello.o
+	ar -r say.a say.o sayhello.o
 
+use_static: saymain.cpp say.a
+	g++ -g saymain.cpp say.a -o main
 
 .PHONY: clean
 
