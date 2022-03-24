@@ -38,6 +38,6 @@ int main()
     display_array(a,5);
     bubble_sourt(a,5);
     display_array(a,5);
-    cout << "Bubble sort demo" << endl;
+
     return 0;
 }
