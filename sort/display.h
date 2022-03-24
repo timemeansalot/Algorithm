@@ -12,7 +12,7 @@ using namespace std;
 template <typename T>
 void display_array(T a[],const int length)
 {
-    cout<<"array data is :"<<endl;
+    cout<<"array data is : ";
     for(int i=0;i<length;i++)
     {
         cout<<a[i]<<" ";
