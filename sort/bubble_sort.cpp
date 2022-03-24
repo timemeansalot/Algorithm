@@ -10,10 +10,11 @@ using namespace std;
  * @param length length of array which will be sorted
  * @return int return 1 when finish sorting
  */
-int bubble_sourt(int a[], const int length)
+template <typename T>
+int bubble_sourt(T a[], const int length)
 {
     bool sorted = 1;
-    int temp = 0;
+    T temp = 0;
     for (int j = length - 1; j > 0; j--)
     {
         for (int i = 0; i < j ; i++)
