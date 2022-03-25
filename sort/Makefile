@@ -1,3 +1,6 @@
+quick: quick_sort.cpp
+	g++ -g quick_sort.cpp -o main
+
 insert: insert_sort.cpp
 	g++ -g insert_sort.cpp -o main
 
