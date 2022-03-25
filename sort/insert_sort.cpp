@@ -52,7 +52,10 @@ int insert_sort(T a[], const int length)
     {
         index = binary_search(a, a[i], i);
         temp = a[i];
-        for (int j = i; j > index + 1; j--)
+        // insert at tail
+        if (index == i - 1 && a[index] < a[i])
+            continue;
+        for (int j = i; j > index; j--)
         {
             a[j] = a[j - 1];
         }
@@ -63,24 +66,9 @@ int insert_sort(T a[], const int length)
 
 int main()
 {
-    // while (1)
-    // {
+    int length = 8;
+    int a[] = {4, 2, 3, 1, 7, 1, 9, 2};
 
-    // }
-    int length = 5;
-    int target = 0;
-    // int *a = new int[length];
-    int a[] = {4, 2, 3, 1, 7};
-
-    // cout << "input length: ";
-    // cin >> length;
-    // cout << endl
-    //      << "input target: ";
-    // cin >> target;
-    // cout << endl
-    //      << "input a: ";
-    // for (int i = 0; i < length; i++)
-    //     cin >> a[i];
     display_array(a, length);
     insert_sort(a, length);
     display_array(a, length);
