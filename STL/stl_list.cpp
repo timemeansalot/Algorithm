@@ -75,16 +75,40 @@ void list_modify()
     show_list(l);
 
     // merge list
-    list<int> l2{100,200,300};
+    list<int> l2{100, 200, 300};
     show_list(l2);
     l.merge(l2);
     show_list(l);
+}
+
+// merge sorted list, the result is still sorted list
+void list_merge()
+{
+    list<int> l1{13, 6, 2, 7};
+    list<int> l2;
+
+    int content[] = {33, 2, 7, 9};
+    l2.assign(content, content + 4);
+
+    show_list(l1);
+    show_list(l2);
+
+    l1.sort();
+    l2.sort();
+
+    show_list(l1);
+    show_list(l2);
+
+    l1.merge(l2);
+    show_list(l1);
+
 }
 
 int main()
 {
     // list_access_data();
     // list_size();
-    list_modify();
+    // list_modify();
+    list_merge();
     return 0;
 }
