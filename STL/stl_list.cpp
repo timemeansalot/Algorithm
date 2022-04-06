@@ -101,7 +101,23 @@ void list_merge()
 
     l1.merge(l2);
     show_list(l1);
+}
 
+void list_begin_end()
+{
+    list<int> a;
+    a.assign({1, 2, 3, 4, 5});
+
+    cout << "first item in list: " << *(a.begin()) << endl;
+    cout << "last item in list: " << *(a.end()) << endl;
+
+    cout << "List in reverse: ";
+    for (auto i = a.end(); i != a.begin(); i--)
+    {
+        cout << *i << " ";
+    }
+    cout << endl;
+    show_list(a);
 }
 
 int main()
@@ -109,6 +125,7 @@ int main()
     // list_access_data();
     // list_size();
     // list_modify();
-    list_merge();
+    // list_merge();
+    list_begin_end();
     return 0;
 }
