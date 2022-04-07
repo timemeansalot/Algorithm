@@ -85,6 +85,7 @@ void set_capacity()
         cout << "set is not empty" << endl;
 
     cout << "max size: " << s.max_size() << endl;
+    cout << "set size is: " << s.size() << endl;
 }
 
 void set_modify()
@@ -106,20 +107,19 @@ void set_modify()
 
 void set_opeartion()
 {
-    set<int> s{1,3,5};
+    set<int> s{1, 3, 5};
     cout << "find 3 iterator: " << *(s.find(3)) << endl;
     cout << "conut 3 in set: " << s.count(3) << endl;
-    cout << "find low bound iterator: " << *(s.lower_bound(3)) << endl; // 找>=value的第一个
-    cout << "find high bound iterator: " << *(s.upper_bound(3)) << endl;// 找>value的第一个
+    cout << "find low bound iterator: " << *(s.lower_bound(3)) << endl;  // 找>=value的第一个
+    cout << "find high bound iterator: " << *(s.upper_bound(3)) << endl; // 找>value的第一个
     // cout << "find high bound iterator: " << (s.equal_range(3)) << endl;// 找>value的第一个
-
 }
 
 int main()
 {
     // set_constructor();
-    // set_capacity();
+    set_capacity();
     // set_modify();
-    set_opeartion();
+    // set_opeartion();
     return 0;
 }
