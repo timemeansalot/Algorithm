@@ -1,10 +1,5 @@
-/*
- * @lc app=leetcode.cn id=509 lang=cpp
- *
- * [509] 斐波那契数
- */
+#include "headfile.h"
 
-// @lc code=start
 class Solution
 {
 public:
@@ -27,4 +22,8 @@ public:
         return memo[n];
     }
 };
-// @lc code=end
+int main()
+{
+    Solution s;
+    cout << s.fib(31) << endl;
+}
