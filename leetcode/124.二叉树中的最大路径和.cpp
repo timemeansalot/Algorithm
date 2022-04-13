@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=124 lang=cpp
+ *
+ * [124] 二叉树中的最大路径和
+ */
 #include "headfile.h"
 // @lc code=start
 /**
@@ -12,15 +17,15 @@
  * };
  */
 
-struct TreeNode
-{
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
+// struct TreeNode
+// {
+//     int val;
+//     TreeNode *left;
+//     TreeNode *right;
+//     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+//     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+//     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+// };
 
 class Solution
 {
@@ -45,12 +50,4 @@ public:
         return max(left, right) + root->val;
     }
 };
-
-int main()
-{
-    TreeNode l(2), r(3);
-    TreeNode m(1, &l, &r);
-    Solution s;
-    cout << s.maxPathSum(&m) << endl;
-    return 0;
-}
+// @lc code=end
