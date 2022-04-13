@@ -1,48 +1,56 @@
 #include "headfile.h"
+
 class Solution
 {
 public:
-    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder)
+    int kthSmallest(TreeNode *root, int k)
     {
-        TreeNode *res = new TreeNode();
-        res = build(preorder, 0, preorder.size() - 1, inorder, 0, inorder.size() - 1);
-        return res;
+        // 根据中序遍历找第k小的节点
+        vector<int> v;
+        InOrder(root, v);
+        return v[k - 1];
     }
 
-    TreeNode *build(vector<int> &preorder, int pre_start, int pre_end,
-                    vector<int> &inorder, int in_start, int in_end)
+    void InOrder(TreeNode *root, vector<int> &v)
     {
-        // 先序遍历的部分
-        if (pre_start > pre_end)
-            return nullptr;
-        int root_value = preorder[pre_start];
-        TreeNode *root = new TreeNode(root_value);
-        if (pre_start > pre_end)
-            return nullptr;
-        // find root in in_order
-        int index = in_start;
-        while (index < in_end)
-        {
-            if (inorder[index] == root_value)
-                break;
-            index++;
-        }
-        int left_size = index - in_start;
-        // 递归左右子树
-        root->left = build(preorder, pre_start + 1, pre_start + left_size, inorder, in_start, index - 1);
-        root->right = build(preorder, pre_start + left_size + 1, pre_end, inorder, index + 1, in_end);
-        return root;
+        if (root == nullptr)
+            return;
+        InOrder(root->left, v);
+        v.push_back(root->val);
+        InOrder(root->right, v);
     }
 };
+// void InOrder(TreeNode *root, int &k)
+// {
+//     if (root == nullptr)
+//         return;
+//     InOrder(root->left, k);
+//     k++;
+//     cout << root->val << ":" << k << endl;
 
+//     InOrder(root->right, k);
+// }
 int main()
 {
-    vector<int> preorder{1, 2};
-    vector<int> inorder{2, 1};
+    TreeNode root(3);
+    TreeNode r2(1);
+    TreeNode r3(3);
+    TreeNode r4(4);
+    TreeNode r5(2);
+    TreeNode r6(6);
+    TreeNode r7(7);
+
+    root.left = &r2;
+    root.right = &r3;
+
+    r2.left = nullptr;
+    r2.right = &r5;
+
+    r3.left = nullptr;
+    r3.right = nullptr;
+
     Solution s;
-    TreeNode *res = new TreeNode;
-    cout << res->val << endl;
-    res = s.buildTree(preorder, inorder);
+    cout << s.kthSmallest(&root, 1) << endl;
 
     // TreeNode *p = (TreeNode *)nullptr;
     return 0;
