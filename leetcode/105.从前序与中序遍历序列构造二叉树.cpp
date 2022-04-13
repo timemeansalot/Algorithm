@@ -1,4 +1,22 @@
+/*
+ * @lc app=leetcode.cn id=105 lang=cpp
+ *
+ * [105] 从前序与中序遍历序列构造二叉树
+ */
+
 #include "headfile.h"
+// @lc code=start
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution
 {
 public:
@@ -34,16 +52,4 @@ public:
         return root;
     }
 };
-
-int main()
-{
-    vector<int> preorder{1, 2};
-    vector<int> inorder{2, 1};
-    Solution s;
-    TreeNode *res = new TreeNode;
-    cout << res->val << endl;
-    res = s.buildTree(preorder, inorder);
-
-    // TreeNode *p = (TreeNode *)nullptr;
-    return 0;
-}
+// @lc code=end
