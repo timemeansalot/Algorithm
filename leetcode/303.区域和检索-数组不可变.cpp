@@ -1,9 +1,14 @@
+/*
+ * @lc app=leetcode.cn id=303 lang=cpp
+ *
+ * [303] 区域和检索 - 数组不可变
+ */
 #include "headfile.h"
-
+// @lc code=start
 class NumArray
 {
 private:
-    int pre_sum[10000];
+    int pre_sum[10001];
 
 public:
     NumArray(vector<int> &nums)
@@ -15,12 +20,6 @@ public:
             // pre_sum[1]=nums[0]
             pre_sum[i + 1] = pre_sum[i] + nums[i]; // 计算前缀和，通过前缀和可以在O(1)内算出区间和
         }
-        // print]
-        // for (int i = 0; i <= nums.size(); i++)
-        // {
-        //     cout << pre_sum[i] << " ";
-        // }
-        // cout << endl;
     }
 
     int sumRange(int left, int right)
@@ -28,12 +27,10 @@ public:
         return pre_sum[right + 1] - pre_sum[left];
     }
 };
-int main()
-{
-    vector<int> a{-2, 0, 3, -5, 2, -1};
 
-    NumArray n(a);
-    int sum = n.sumRange(0,5);
-    cout << sum << endl;
-    return 0;
-}
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray* obj = new NumArray(nums);
+ * int param_1 = obj->sumRange(left,right);
+ */
+// @lc code=end
