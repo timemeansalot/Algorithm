@@ -1,4 +1,11 @@
+/*
+ * @lc app=leetcode.cn id=1109 lang=cpp
+ *
+ * [1109] 航班预订统计
+ */
+
 #include "headfile.h"
+// @lc code=start
 class Solution
 {
 public:
@@ -7,18 +14,12 @@ public:
 
         vector<int> diff(n); // 差分数组
         vector<int> nums(n);
-
-        cout << nums.size() << " " << diff.size() << endl;
         // 计算差分数组
         for (int i = 0; i < bookings.size(); i++)
         {
             diff[bookings[i][0] - 1] += bookings[i][2];
-            diff[bookings[i][1]] -= bookings[i][2];
-
-            // print diff
-            for (auto d : diff)
-                cout << d << " ";
-            cout << endl;
+            if (bookings[i][1] < nums.size()) // 如果结尾大于diff数组的长度,则所有后面的都要改
+                diff[bookings[i][1]] -= bookings[i][2];
         }
 
         // 由差分数组计算nums数组
@@ -31,18 +32,4 @@ public:
         return nums;
     }
 };
-
-int main()
-{
-
-    vector<vector<int>> bookings{{1, 2, 10}, {2, 3, 20}, {2, 5, 25}};
-    int n = 5;
-
-    Solution s;
-
-    vector<int> nums = s.corpFlightBookings(bookings, n);
-    for (auto num : nums)
-        cout << num << " ";
-    cout << endl;
-    return 0;
-}
+// @lc code=end
