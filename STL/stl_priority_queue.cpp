@@ -54,9 +54,6 @@ void priority_queue_init()
     fifth.push(1);
     fifth.push(1);
     cout << "fifth top: " << fifth.top() << endl;
-
-    fifth.pop();
-    cout << "fifth top: " << fifth.top() << endl;
 }
 
 int main()
