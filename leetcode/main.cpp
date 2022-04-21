@@ -2,50 +2,80 @@
 class Solution
 {
 public:
-    bool carPooling(vector<vector<int>> &trips, int capacity)
+    ListNode *removeNthFromEnd(ListNode *head, int n)
     {
 
-        vector<int> diff(10);
-        vector<int> nums(10);
+        if (head == nullptr)
+            return head;
+        ListNode *res = new ListNode;
+        res->next = head;
+        ListNode *left = res;
+        ListNode *right = left;
 
-        // 构造diff数组
-        for (int i = 0; i < trips.size(); i++)
+        while (n > 0)
         {
-            if (trips[i][1] - 1 >= 0)
-                diff[trips[i][1] - 1] -= trips[i][0];
-            else
-                diff[0] -= trips[i][0];
+            right = right->next;
+            if (right == nullptr)
+                break;
+            n--;
+        }
+        if (n)
+            return head;
 
-            if (trips[i][2] < diff.size())
-                diff[trips[i][2]-1] += trips[i][0];
-
-            // print diff
-            for (auto d : diff)
-                cout << d << " ";
-            cout << endl;
+        // right = right->next;
+        while (right->next)
+        {
+            right = right->next;
+            left = left->next;
         }
 
-        // 计算nums数组
-        nums[0] = capacity+diff[0];
-        for (int i = 1; i < nums.size(); i++)
-        {
-            nums[i] = diff[i] + nums[i - 1];
-            if (nums[i] < 0)
-                    return false;
-        }
-        return true;
+        left->next = left->next->next;
+
+        return res->next;
     }
 };
 
 int main()
 {
 
-    vector<vector<int>> bookings{{3,5,9}, {4,2,5},{3,4,6},{9,1,4},{5,6,8},{5,4,6}};
-    int n = 14;
-
+    ListNode *l1 = new ListNode;
+    ListNode *l2 = new ListNode;
+    ListNode *l3 = new ListNode;
+    ListNode *l4 = new ListNode;
+    ListNode *l5 = new ListNode;
+    ListNode *l6 = new ListNode;
+    ListNode *l7 = new ListNode;
+    ListNode *l8 = new ListNode;
     Solution s;
 
-    bool p = s.carPooling(bookings, n);
-    cout << p << endl;
+    l1->val = 1;
+    l2->val = 2;
+    l3->val = 3;
+    l4->val = 4;
+    l5->val = 5;
+
+    l1->next = l2;
+    l2->next = nullptr;
+    l3->next = l4;
+    l4->next = l5;
+    l5->next = nullptr;
+
+    ListNode *head = l1;
+    cout << "list data: ";
+    while (head)
+    {
+        cout << head->val << " ";
+        head = head->next;
+    }
+    cout << endl;
+
+    ListNode *res = s.removeNthFromEnd(l1, 1);
+
+    while (res != nullptr)
+    {
+        cout << res->val << " ";
+        res = res->next;
+    }
+
     return 0;
 }
