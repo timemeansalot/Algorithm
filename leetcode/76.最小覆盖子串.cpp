@@ -1,4 +1,10 @@
+/*
+ * @lc app=leetcode.cn id=76 lang=cpp
+ *
+ * [76] 最小覆盖子串
+ */
 #include "headfile.h"
+// @lc code=start
 class Solution
 {
 public:
@@ -53,20 +59,11 @@ public:
             }
         }
 
-        if (len < s.size())
+        if (len <= s.size())
         {
             return s.substr(start, len);
         }
         return "";
     }
 };
-
-int main()
-{
-
-    string s="ADOBECODEBANC";
-    string t="ABC";
-    Solution sol;
-    string res=sol.minWindow(s,t);
-    return 0;
-}
+// @lc code=end
