@@ -1,4 +1,10 @@
+/*
+ * @lc app=leetcode.cn id=7 lang=cpp
+ *
+ * [7] 整数反转
+ */
 #include "headfile.h"
+// @lc code=start
 class Solution
 {
 public:
@@ -50,18 +56,4 @@ public:
         return res;
     }
 };
-
-int main()
-{
-
-    cout << int(0x7fffffff) << " " << int(0x7fffffff) - 5 << endl;
-    cout << int(0x80000001) << " " << int(0x80000001) + 5 << endl;
-    int out = 0, in = -321;
-    cout << INT32_MAX << "  " << INT32_MIN << endl;
-    cout << INT32_MAX / 10 << " " << INT32_MIN / 10 << endl;
-    Solution sol;
-    cout << sol.reverse(in) << endl;
-}
-
-//-214748364
-//-2147483648
+// @lc code=end
