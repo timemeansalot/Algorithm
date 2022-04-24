@@ -1,66 +1,27 @@
 #include "headfile.h"
-class Solution
+
+int binary_search(vector<int> nums, int target)
 {
-public:
-    int reverse(int x)
+    int left = 0, right = nums.size() - 1; // 区间左闭右闭
+    int mid = 0;
+
+    while (left <= right) // 区间左闭右闭，所以left=right的时候，代表区间内还有一个元素
     {
-        queue<int> q;
-        int sign = x >= 0 ? 1 : -1;
-        int res = 0;
-        bool valid = false;
+        mid = left + (right - left) / 2; // 避免left+right溢出
 
-        // x *= sign;
-        while (x)
-        {
-            q.push(x % 10);
-            x /= 10;
-        }
-
-        while (q.size())
-        {
-            if (~valid)
-                if (q.front())
-                    valid = true;
-
-            if (valid == false)
-            {
-                q.pop();
-            }
-            else
-            {
-                if (res >= INT32_MAX / 10)
-                {
-                    if (res > INT32_MAX / 10)
-                        return 0;
-                    else if (res == INT32_MAX / 10 && q.front()>7)
-                        return 0;
-                }
-                if(res<=INT32_MIN/10)
-                {
-                    if(res<INT32_MIN/10)
-                    return 0;
-                    else if(res==INT32_MIN/10&&q.front()<-4)
-                    return 0;
-                }
-                res = res * 10 + q.front();
-                q.pop();
-            }
-        }
-        // res *= sign;
-        return res;
+        if (nums[mid] == target)
+            return mid;
+        else if (nums[mid] < target)
+            left = mid + 1;
+        else if (target < nums[mid])
+            right = mid - 1;
     }
-};
+
+    return -1;
+}
 
 int main()
 {
-
-    cout << int(0x7fffffff) << " " << int(0x7fffffff) - 5 << endl;
-    cout << int(0x80000001) << " " << int(0x80000001) + 5 << endl;
-    int out = 0, in = -321;
-    cout << INT32_MAX << "  " << INT32_MIN << endl;
-    cout << INT32_MAX / 10 << " " << INT32_MIN / 10 << endl;
-    Solution sol;
-    cout << sol.reverse(in) << endl;
 }
 
 //-214748364
