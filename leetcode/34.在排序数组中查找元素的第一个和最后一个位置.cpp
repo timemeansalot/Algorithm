@@ -1,5 +1,10 @@
+/*
+ * @lc app=leetcode.cn id=34 lang=cpp
+ *
+ * [34] 在排序数组中查找元素的第一个和最后一个位置
+ */
 #include "headfile.h"
-
+// @lc code=start
 class Solution
 {
 public:
@@ -50,16 +55,4 @@ public:
         return res;
     }
 };
-
-int main()
-{
-
-    vector<int> nums = {5, 7, 7, 8, 8, 10};
-    int target = 8;
-    Solution s;
-    vector<int> res = s.searchRange(nums, target);
-    cout << res[0] << " " << res[1] << endl;
-}
-
-//-214748364
-//-2147483648
+// @lc code=end
