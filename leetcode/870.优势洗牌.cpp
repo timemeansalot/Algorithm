@@ -1,5 +1,11 @@
-#include "headfile.h"
+/*
+ * @lc app=leetcode.cn id=870 lang=cpp
+ *
+ * [870] 优势洗牌
+ */
 
+#include "headfile.h"
+// @lc code=start
 class Solution
 {
 public:
@@ -32,20 +38,4 @@ public:
         return res;
     }
 };
-void show_vector(vector<int> &nums)
-{
-    cout << "vector items: ";
-    for (auto n : nums)
-        cout << n << " ";
-    cout << endl;
-}
-int main()
-{
-    vector<int> nums1 = {2, 7, 11, 15};
-    vector<int> nums2 = {1, 10, 4, 11};
-    Solution s;
-    vector<int> res = s.advantageCount(nums1, nums2);
-    show_vector(res);
-
-    return 0;
-}
+// @lc code=end
