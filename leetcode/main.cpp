@@ -3,49 +3,63 @@
 class Solution
 {
 public:
-    vector<int> advantageCount(vector<int> &nums1, vector<int> &nums2)
+    ListNode *reverseBetween(ListNode *head, int left, int right)
     {
-        int left = 0, right = nums1.size() - 1;
-        priority_queue<pair<int, int>> pq;
-        vector<int> res(nums1.size());
+        ListNode *p = head, *first = head, *l = head, *r = head;
+        int count = 1;
 
-        for (int i = 0; i < nums2.size(); i++)
-            pq.push(make_pair(nums2[i], i));
-
-        sort(nums1.begin(), nums1.end(), greater<int>());
-
-        while (left <= right)
+        while (count <= right)
         {
-            if (nums1[left] > pq.top().first)
+
+            if (count == left)
             {
-                res[pq.top().second] = nums1[left];
-                left++;
-                pq.pop();
+                p = l;
+                first = r;
             }
-            else
+
+            if (count > left)
             {
-                res[pq.top().second] = nums1[right];
-                right--;
-                pq.pop();
+                l->next = p->next;
+                p->next = l;
             }
+
+            l = r;
+            r = r->next;
+            count++;
         }
-        return res;
+
+        first->next = l;
+        return head;
     }
 };
-void show_vector(vector<int> &nums)
-{
-    cout << "vector items: ";
-    for (auto n : nums)
-        cout << n << " ";
-    cout << endl;
-}
+
 int main()
 {
-    vector<int> nums1 = {2, 7, 11, 15};
-    vector<int> nums2 = {1, 10, 4, 11};
+    ListNode *n1 = new ListNode;
+    ListNode *n2 = new ListNode;
+    ListNode *n3 = new ListNode;
+    ListNode *n4 = new ListNode;
+    ListNode *n5 = new ListNode;
+    ListNode *res = new ListNode;
     Solution s;
-    vector<int> res = s.advantageCount(nums1, nums2);
-    show_vector(res);
+    n1->val = 1;
+    n2->val = 2;
+    n3->val = 3;
+    n4->val = 4;
+    n5->val = 5;
 
-    return 0;
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = n4;
+    n4->next = n5;
+    n5->next = nullptr;
+
+    res = s.reverseBetween(n1, 2, 4);
+
+    while (res)
+    {
+        cout << res->val << " ";
+        res = res->next;
+    }
+    cout << endl;
 }
