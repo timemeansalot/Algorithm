@@ -20,41 +20,40 @@ class Solution
 public:
     ListNode *reverseBetween(ListNode *head, int left, int right)
     {
+        ListNode *p = new ListNode;
+        ListNode *first = head, *l = head, *r = head;
+        bool flag = false;
+        int count = 0;
+        p->next = head;
 
-        int count = 1;
-        ListNode *p = head, *lp = head, *rp = head;
-        ListNode *first = head;
-
-        if (head == nullptr)
-            return nullptr;
-        if (head->next == nullptr)
-            return head;
-        if (left == right)
-            return head;
-
-        while (count < left - 1)
+        while (count < right && r != nullptr)
         {
-            p = p->next;
-        }
+            count += 1;
+            l = r;
+            r = r->next;
 
-        count = 0;
-        while (count <= right)
-        {
-            if (count == left)
-                first = lp;
-            if (count >= left)
+            if (count == left - 1)
             {
-                lp->next = p->next;
-                p->next = lp;
+                p = l;
+                flag = true;
+            }
+            if (count == left)
+            {
+                first = l;
             }
 
-            lp = rp;
-            rp = rp->next;
-            count += 1;
+            if (count >= left && count <= right)
+            {
+                l->next = p->next;
+                p->next = l;
+            }
         }
-        first->next = lp;
+        first->next = r;
 
-        return head;
+        if (flag == false)
+            return p->next;
+        else
+            return head;
     }
 };
 // @lc code=end

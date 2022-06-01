@@ -5,31 +5,40 @@ class Solution
 public:
     ListNode *reverseBetween(ListNode *head, int left, int right)
     {
-        ListNode *p = head, *first = head, *l = head, *r = head;
-        int count = 1;
+        ListNode *p = new ListNode;
+        ListNode *first = head, *l = head, *r = head;
+        bool flag = false;
+        int count = 0;
+        p->next = head;
 
-        while (count <= right)
+        while (count < right && r != nullptr)
         {
+            count += 1;
+            l = r;
+            r = r->next;
 
-            if (count == left)
+            if (count == left - 1)
             {
                 p = l;
-                first = r;
+                flag = true;
+            }
+            if (count == left)
+            {
+                first = l;
             }
 
-            if (count > left)
+            if (count >= left && count <= right)
             {
                 l->next = p->next;
                 p->next = l;
             }
-
-            l = r;
-            r = r->next;
-            count++;
         }
+        first->next = r;
 
-        first->next = l;
-        return head;
+        if (flag == false)
+            return p->next;
+        else
+            return head;
     }
 };
 
@@ -49,12 +58,12 @@ int main()
     n5->val = 5;
 
     n1->next = n2;
-    n2->next = n3;
+    n2->next = nullptr;
     n3->next = n4;
     n4->next = n5;
     n5->next = nullptr;
 
-    res = s.reverseBetween(n1, 2, 4);
+    res = s.reverseBetween(n1, 1, 2);
 
     while (res)
     {
