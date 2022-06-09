@@ -7,7 +7,7 @@
             "name": "Debug",
             //"program": "${workspaceFolder}/test.out",
             //上一行是官方写法，但是不同的cpp调试都要改配置，非常麻烦
-            "program": "${workspaceFolder}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/${fileBasenameNoExtension}.out",
             "args": [],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "Build with Clang"
