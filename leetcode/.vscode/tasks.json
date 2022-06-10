@@ -1,28 +1,24 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "cppbuild",
-			"label": "C/C++: g++ build active file",
-			"command": "/usr/bin/g++",
-			"args": [
-				"-fdiagnostics-color=always",
-				"-g",
-				"${file}",
-				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}.out"
-			],
-			"options": {
-				"cwd": "${fileDirname}"
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"detail": "compiler: /usr/bin/g++"
-		}
-	]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with Clang",//这个任务的名字在launch.json最后一项配置
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-std=c++17",
+                "-stdlib=libc++",
+                //"test.cpp",这里是官方写法，不具有普遍性，注意两个配置文件的统一性即可
+                "${fileBasenameNoExtension}.cpp",
+                "-o",
+                //"test.out",
+                "${fileBasenameNoExtension}.out",
+                "--debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
 }
