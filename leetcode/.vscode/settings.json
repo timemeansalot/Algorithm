@@ -64,6 +64,27 @@
         "algorithm": "cpp",
         "functional": "cpp",
         "iterator": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "ccomplex": "cpp",
+        "map": "cpp",
+        "numeric": "cpp",
+        "__availability": "cpp",
+        "__tree": "cpp",
+        "deque": "cpp",
+        "__memory": "cpp",
+        "memory_resource": "cpp",
+        "filesystem": "cpp",
+        "forward_list": "cpp",
+        "fstream": "cpp",
+        "future": "cpp",
+        "list": "cpp",
+        "queue": "cpp",
+        "random": "cpp",
+        "regex": "cpp",
+        "scoped_allocator": "cpp",
+        "set": "cpp",
+        "stack": "cpp",
+        "thread": "cpp",
+        "unordered_set": "cpp"
     }
 }

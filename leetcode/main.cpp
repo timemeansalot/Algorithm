@@ -1,74 +1,42 @@
 #include "headfile.h"
-
 class Solution
 {
 public:
-    ListNode *reverseBetween(ListNode *head, int left, int right)
+    int maxPathSum(TreeNode *root)
     {
-        ListNode *p = new ListNode;
-        ListNode *first = head, *l = head, *r = head;
-        bool flag = false;
-        int count = 0;
-        p->next = head;
+        int max_value = -INT32_MAX;
+        traverse(root, max_value);
+        return max_value;
+    }
 
-        while (count < right && r != nullptr)
-        {
-            count += 1;
-            l = r;
-            r = r->next;
+    int traverse(TreeNode *root, int &max_value)
+    {
+        if (root == NULL)
+            return 0;
+        int left = max(0, traverse(root->left, max_value));
+        int right = max(0, traverse(root->right, max_value));
 
-            if (count == left - 1)
-            {
-                p = l;
-                flag = true;
-            }
-            if (count == left)
-            {
-                first = l;
-            }
-
-            if (count >= left && count <= right)
-            {
-                l->next = p->next;
-                p->next = l;
-            }
-        }
-        first->next = r;
-
-        if (flag == false)
-            return p->next;
-        else
-            return head;
+        // 后序遍历部分
+        int lmr = left + right + root->val;
+        max_value = max(lmr, max_value);
+        return max(left, right) + root->val;
     }
 };
 
 int main()
 {
-    ListNode *n1 = new ListNode;
-    ListNode *n2 = new ListNode;
-    ListNode *n3 = new ListNode;
-    ListNode *n4 = new ListNode;
-    ListNode *n5 = new ListNode;
-    ListNode *res = new ListNode;
+    TreeNode *t1=new TreeNode;
+    TreeNode *t2=new TreeNode;
+    TreeNode *t3=new TreeNode;
+
+    t1->val = 1;
+    t2->val = 2;
+    t3->val = 3;
+
+    t1->left = t2;
+    t1->right = t3;
+
     Solution s;
-    n1->val = 1;
-    n2->val = 2;
-    n3->val = 3;
-    n4->val = 4;
-    n5->val = 5;
-
-    n1->next = n2;
-    n2->next = nullptr;
-    n3->next = n4;
-    n4->next = n5;
-    n5->next = nullptr;
-
-    res = s.reverseBetween(n1, 1, 2);
-
-    while (res)
-    {
-        cout << res->val << " ";
-        res = res->next;
-    }
-    cout << endl;
+    int ans = s.maxPathSum(t1);
+    cout << ans << endl;
 }
