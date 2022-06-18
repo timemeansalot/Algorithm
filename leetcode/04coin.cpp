@@ -52,9 +52,9 @@ int main()
                 if (s[k].account >= bucks)
                 {
                     s[k].account -= bucks;
-                    s[i].account -= bucks*times;
+                    s[i].account -= bucks * times;
                     ans += bucks;
-                    bucks=0;
+                    bucks = 0;
                     break;
                 }
                 else
@@ -65,49 +65,40 @@ int main()
                 }
             }
 
-            ans+=(bucks/(times+1));
+            ans += (bucks / (times + 1));
         }
         else
         {
-            ans+=bucks;
-            s[i].account-=times*bucks;
+            ans += bucks;
+            s[i].account -= times * bucks;
         }
 
-
-
-        if(remain!=0)
+        if (remain != 0)
         {
-            // output 
+            // output
             // for(int k=0;k<coin_types;k++)
             // {
             //     printf("value: %d, account: %d\n",s[k].value,s[k].account);
             // }
+            if (i == 0)
+                break;
 
-            // for(int k=0;k<coin_types;k++)
-            // {
-            //     if(s[k].value>=(C-remain)&&s[k].account>0)
-            //     {
-            //         s[k].account--;
-            //         ans+=1;
-            //         break;
-            //     }
-            // }
-            if(i==0)
-            break;
-            for(int k=i-1;k>=0;k--)
+            int goal = C - remain * s[i].value;
+            while (goal)
             {
-                if(s[k].account*s[k].value>=(C-remain*s[i].value))
+                for (int k = i - 1; k >= 0; k--)
                 {
-                    ans+=1;
-                    s[k].account-=(C-remain)/s[k].value;
-                    if((C-remain)>((C-remain)/s[k].value)*s[k].value)
+                    while (goal >= s[k].value && s[k].account)
                     {
+                        goal -= s[k].value;
                         s[k].account--;
                     }
                 }
             }
+            if (goal == 0)
+                ans += 1;
         }
     }
-    cout << ans<<endl;
+    cout << ans << endl;
     return 0;
 }
