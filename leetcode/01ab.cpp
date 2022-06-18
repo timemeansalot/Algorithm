@@ -34,6 +34,16 @@ void modify_string()
             right_index++;
         }
 
+        // find left char and right char for each subset ???
+        if (left_index == 0)
+            left_char = 'C';
+        else
+            left_char = s[left_index - 1];
+        if (right_index == s_length)
+            right_char = 'C';
+        else
+            right_char = s[right_index];
+
         // output current subset ??? for test
         // for (int i = left_index; i < right_index; i++)
         //     cout << s[i];
@@ -42,16 +52,7 @@ void modify_string()
         // modify the subset accoring to its left value and right value
         if (ab_value >= 0 && ba_value >= 0)
         {
-            // decide left_char, right_char and replace_char
-            if (left_index == 0)
-                left_char = 'C';
-            else
-                left_char = s[left_index - 1];
-            if (right_index == s_length)
-                right_char = 'C';
-            else
-                right_char = s[right_index];
-
+            // decide replace_char
             if (left_char == 'A' && right_char == 'B')
                 replace_char = 'A';
             else if (left_char == 'B' && right_char == 'A')
@@ -66,6 +67,87 @@ void modify_string()
             // change subset ??? into replace char
             for (int i = left_index; i < right_index; i++)
                 s[i] = replace_char;
+        }
+        else if (ab_value < 0 && ab_value + ba_value<=0)
+        {
+            if (left_char == 'A' && right_char == 'A')
+            {
+                replace_char = 'B';
+            }
+            else if ((left_char == 'B' && right_char == 'C') || (left_char == 'A' && right_char == 'C'))
+            {
+                if ((right_index - left_index) % 2 == 1)
+                    replace_char = 'B';
+                else
+                    replace_char = 'A';
+            }
+            else if (left_char == 'B' && right_char == 'B')
+            {
+                if (right_index - left_index == 2)
+                    replace_char = 'B';
+                else
+                    replace_char = 'A';
+            }
+            else if (left_char == 'A' && right_char == 'B')
+            {
+                if ((right_index - left_index) % 2 == 1)
+                    replace_char = 'A';
+                else
+                    replace_char = 'B';
+            }
+            else
+            {
+                replace_char = 'A';
+            }
+
+            // replace ???
+            for (int i = left_index; i < right_index; i++)
+            {
+                s[i] = replace_char;
+                replace_char = replace_char == 'A' ? 'B' : 'A';
+            }
+        }
+        else if (ba_value < 0 && ba_value + ab_value<=0)
+        {
+            if (left_char == 'A' && right_char == 'A')
+            {
+                replace_char = 'B';
+            }
+            else if ((left_char == 'B' && right_char == 'C') || (left_char == 'A' && right_char == 'C'))
+            {
+                if ((right_index - left_index) % 2 == 1)
+                    replace_char = 'B';
+                else
+                    replace_char = 'A';
+            }
+            else if (left_char == 'B' && right_char == 'B')
+            {
+                if (right_index - left_index == 2)
+                    replace_char = 'B';
+                else
+                    replace_char = 'A';
+            }
+            else if (left_char == 'A' && right_char == 'B')
+            {
+                if ((right_index - left_index) % 2 == 1)
+                    replace_char = 'A';
+                else
+                    replace_char = 'B';
+            }
+            else
+            {
+                replace_char = 'A';
+            }
+
+            // we prefer BA more than AB
+            replace_char = replace_char == 'A' ? 'B' : 'A';
+
+            // replace ???
+            for (int i = left_index; i < right_index; i++)
+            {
+                s[i] = replace_char;
+                replace_char = replace_char == 'A' ? 'B' : 'A';
+            }
         }
     }
 
