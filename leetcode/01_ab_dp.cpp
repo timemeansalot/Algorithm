@@ -71,10 +71,10 @@ int main()
         }
 
 
-        for(int i=0;i<s_length;i++)
-        {
-            cout<<dp[i][0]<<" "<<dp[i][1]<<endl;
-        }
+        // for(int i=0;i<s_length;i++)
+        // {
+        //     cout<<dp[i][0]<<" "<<dp[i][1]<<endl;
+        // }
         // output result
         cout << "Case #" << test_case << ": " << min(dp[s_length-1][0],dp[s_length-1][1]) << endl;
     }
